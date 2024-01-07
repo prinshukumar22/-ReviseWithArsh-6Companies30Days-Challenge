@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void solve(vector<int> &temp, vector<vector<int>> &ans, int n, int k, int s){
+        if(n == 0 && k == 0){
+            //sort(temp.begin(), temp.end());
+            ans.push_back(temp);
+            return;
+        }
+        if(n <= 0 && k <= 0) return;
+
+        for(int i=s;i<=9;i++){
+                temp.push_back(i);
+                solve(temp, ans, n-i, k-1, i+1);
+                temp.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        
+        vector<vector<int>> ans;
+        vector<int> temp;
+        //unordered_map<int,bool> vis;
+
+        solve(temp, ans, n, k, 1);
+
+        return ans;
+    }
+};
